@@ -8,7 +8,7 @@ from langchain_core.output_parsers import StrOutputParser
 
 langchain_api_key = st.secrets["LANGCHAIN_API_KEY"]
 langchain_project = st.secrets["LANGCHAIN_PROJECT"]
-hf_token = st.secrets["HF_TOKEN"] 
+
 
 
 langchain_api_key = os.environ["LANGCHAIN_API_KEY"]
@@ -43,6 +43,7 @@ chain=prompt|llm|output_parser
 
 if input_text:
     st.write(chain.invoke({"question":input_text}))
+
 
 
 
