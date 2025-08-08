@@ -1,5 +1,10 @@
 
 import os
+import streamlit as st
+from langchain_community.llms import Ollama
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.output_parsers import StrOutputParser
+
 
 langchain_api_key = st.secrets["LANGCHAIN_API_KEY"]
 langchain_project = st.secrets["LANGCHAIN_PROJECT"]
@@ -11,14 +16,6 @@ langchain_api_key = os.environ["LANGCHAIN_API_KEY"]
 
 # if needed
 os.environ["LANGCHAIN_API_KEY"] = langchain_api_key
-
-
-
-from langchain_community.llms import Ollama
-import streamlit as st
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.output_parsers import StrOutputParser
-
 
 
 ## Langsmith Tracking
@@ -46,6 +43,7 @@ chain=prompt|llm|output_parser
 
 if input_text:
     st.write(chain.invoke({"question":input_text}))
+
 
 
 
