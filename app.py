@@ -1,16 +1,25 @@
+
 import os
-from dotenv import load_dotenv
-openai_api_key = st.secrets["OPENAI_API_KEY"]
+
 langchain_api_key = st.secrets["LANGCHAIN_API_KEY"]
 langchain_project = st.secrets["LANGCHAIN_PROJECT"]
-hf_token = st.secrets["HF_TOKEN"]
+hf_token = st.secrets["HF_TOKEN"] 
+
+
+langchain_api_key = os.environ["LANGCHAIN_API_KEY"]
+
+
+# if needed
+os.environ["LANGCHAIN_API_KEY"] = langchain_api_key
+
+
 
 from langchain_community.llms import Ollama
 import streamlit as st
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 
-load_dotenv()
+
 
 ## Langsmith Tracking
 os.environ["LANGCHAIN_API_KEY"]=os.getenv("LANGCHAIN_API_KEY")
@@ -37,6 +46,7 @@ chain=prompt|llm|output_parser
 
 if input_text:
     st.write(chain.invoke({"question":input_text}))
+
 
 
 
